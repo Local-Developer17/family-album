@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+  <title>Family Album</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jersey+25&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="main-container">
+    <nav class="navbar">
+      <p class="heading">Home</p>
+      <div class="sidebar">
+        <img src="images/settings.png" class="settings" alt="" />
+        <p class="heading">Pictures</p>
+        <div class="dropdown hidden">
+          <p class="q1">Jan</p>
+          <p class="q2">Feb</p>
+          <p class="q3">March</p>
+          <p class="q4">Apr</p>
+        </div>
+      </div>
+    </nav>
+    <h1 class="welcome">Welcome to Family Album</h1>
+    <div class="slides">
+      <div class="slide first">
+        <img src="" id="first" alt="" />
+      </div>
+      <div class="slide second">
+        <img src="" id="second" alt="" />
+      </div>
+      <div class="slide third">
+        <img src="" id="third" alt="" />
+      </div>
+    </div>
+    <div class="gallery hidden">
+      <p class="gallery-heading hidden">Select a Picture</p>
+      <img id="pic" src="" alt="" />
+      <div class="gallery-container"></div>
+    </div>
+    <div class="slogan">
+      <p>
+        Save your moments, keep your memories alive... Download, share, print etc... <br />
+        Join us for exclusive one-month free membership!
+      </p>
+    </div>
+    <div class="plans">
+      <div class="first">
+        <div class="plan regular">
+          <h4>Regular</h4>
+          <ul>
+            <p>Free</p>
+            <li>Limited-Storage(10GB/month)</li>
+            <li>Unable to Download Pictures</li>
+            <li>Ads.</li>
+          </ul>
+          <button type="button">Current Plan</button>
+        </div>
+        <div class="plan premium">
+          <h4>Premium</h4>
+          <ul>
+            <p>$5/month</p>
+            <li>Limited-Storage(100GB/month)</li>
+            <li>Free to Download Pictures</li>
+            <li>Ads-Free.</li>
+          </ul>
+          <button class="buy" type="button">Buy</button>
+        </div>
+        <div class="plan ultimate">
+          <h4>Ultimate</h4>
+          <ul>
+            <p>$10/month</p>
+            <li>Unlimited-Storage</li>
+            <li>Free to Download Pictures</li>
+            <li>Ads-Free</li>
+          </ul>
+          <button class="buy" type="button">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
