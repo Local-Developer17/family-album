@@ -13,28 +13,10 @@ const slidesEl = document.querySelector(".slides");
 const sloganEl = document.querySelector(".slogan");
 const titleEl = document.querySelector(".title");
 const plansEl = document.querySelector(".plans");
-const q1Images = [
-  "images/q1/pic-1.jpg",
-  "images/q1/pic-2.jpg",
-  "images/q1/pic-3.jpg",
-  "images/q1/pic-4.jpeg",
-  "images/q1/pic-5.jpeg",
-  "images/q1/pic-6.jpeg",
-  "images/q1/pic-7.jpeg",
-  "images/q1/pic-8.jpeg",
-  "images/q1/pic-9.jpeg",
-];
-const q2Images = [
-  "images/q2/pic-1.jpg",
-  "images/q2/pic-2.jpg",
-  "images/q2/pic-3.jpg",
-  "images/q2/pic-4.jpeg",
-  "images/q2/pic-5.jpeg",
-  "images/q2/pic-6.jpeg",
-  "images/q2/pic-7.jpeg",
-];
+const q1Images = ["images/q1/pic-1.jpg", "images/q1/pic-2.jpg", "images/q1/pic-3.jpg"];
+const q2Images = ["images/q2/pic-1.jpg", "images/q2/pic-2.jpg", "images/q2/pic-3.jpg"];
 const q3Images = ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"];
-const q4Images = ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg"];
+const q4Images = ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q3/pic-3.jpg"];
 const slideImages = ["images/slide-img/pic-10.jpg", "images/slide-img/pic-11.jpg", "images/slide-img/pic-12.jpg"];
 const slideImages2 = ["images/slide-img/pic-13.jpg", "images/slide-img/pic-14.jpg", "images/slide-img/pic-15.jpg"];
 const slideImages3 = ["images/slide-img/pic-16.jpg", "images/slide-img/pic-17.jpg", "images/slide-img/pic-18.jpg"];
