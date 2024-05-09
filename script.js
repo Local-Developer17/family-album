@@ -2,7 +2,6 @@ const sidebarElem = document.querySelector(".sidebar");
 const dropdownElem = document.querySelector(".dropdown");
 const galleryElem = document.querySelector(".gallery-container");
 const container = document.querySelector(".gallery");
-const overviewElem = document.querySelector(".gallery");
 const headingElem = document.querySelector(".gallery-heading");
 const image = document.getElementsByTagName("img");
 const headingEl = document.querySelector(".gallery-heading");
@@ -17,9 +16,24 @@ const q1Images = ["images/q1/pic-1.jpg", "images/q1/pic-2.jpg", "images/q1/pic-3
 const q2Images = ["images/q2/pic-1.jpg", "images/q2/pic-2.jpg", "images/q2/pic-3.jpg"];
 const q3Images = ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"];
 const q4Images = ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q3/pic-3.jpg"];
-const slideImages = ["images/slide-img/pic-10.jpg", "images/slide-img/pic-11.jpg", "images/slide-img/pic-12.jpg","images/slide-img/pic-19.jpg"];
-const slideImages2 = ["images/slide-img/pic-13.jpg", "images/slide-img/pic-14.jpg", "images/slide-img/pic-15.jpg","images/slide-img/pic-20.jpg"];
-const slideImages3 = ["images/slide-img/pic-16.jpg", "images/slide-img/pic-17.jpg", "images/slide-img/pic-18.jpg","images/slide-img/pic-21.jpg"];
+const slideImages = [
+  "images/slide-img/pic-10.jpg",
+  "images/slide-img/pic-11.jpg",
+  "images/slide-img/pic-12.jpg",
+  "images/slide-img/pic-19.jpg",
+];
+const slideImages2 = [
+  "images/slide-img/pic-13.jpg",
+  "images/slide-img/pic-14.jpg",
+  "images/slide-img/pic-15.jpg",
+  "images/slide-img/pic-20.jpg",
+];
+const slideImages3 = [
+  "images/slide-img/pic-16.jpg",
+  "images/slide-img/pic-17.jpg",
+  "images/slide-img/pic-18.jpg",
+  "images/slide-img/pic-21.jpg",
+];
 const RightToggleUrl = "images/toggle-right.png";
 const leftToggleUrl = "images/toggle-left.png";
 const closeBtnUrl = "images/cancel.png";
@@ -267,6 +281,7 @@ function picIndicator(counter, pictureCount) {
 }
 function openImage() {
   container.classList.add("overlay");
+  main.classList.add("fix-height");
   pic.classList.add("zoom");
   pic.classList.add("no-click");
   pic.classList.remove("hidden");
@@ -292,6 +307,7 @@ function refreshGallery(input) {
       container.removeChild(RightToggle);
       container.removeChild(leftToggle);
       container.removeChild(indicator);
+      main.classList.remove("fix-height");
       setTimeout(() => {
         container.classList.remove("overlay");
         pic.classList.add("hidden");
