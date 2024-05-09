@@ -23,6 +23,7 @@ h1 {
 }
 .navbar {
   display: flex;
+  overflow: hidden;
   width: 100%;
   height: 7%;
   align-items: center;
@@ -32,13 +33,14 @@ h1 {
   font-weight: 900;
   font-family: "Jersey 25", sans-serif;
   color: #8c8d8c;
+  box-shadow: 0px 1px 12px 5px rgba(242, 242, 242, 1);
 }
 .sidebar {
   width: 40%;
   height: auto;
   text-align: center;
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   display: flex;
   flex-direction: row;
   margin-left: 5px;
@@ -46,32 +48,38 @@ h1 {
 
 .heading {
   cursor: pointer;
-  margin: 0.1rem;
   position: relative;
   margin-left: 1rem;
+  font-size: 2rem;
 }
 .dropdown {
+  display: flex;
   position: relative;
-  bottom: 1px;
-  right: -5%;
+  align-items: center;
+  margin-left: 1rem;
   animation: 1s floating;
+}
+.dropdown p {
+  margin: 0.3em;
+  padding: 0.2em;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.5rem;
+  position: relative;
+  border-radius: 10px;
+}
+.dropdown p:hover {
+  box-shadow: 0px 5px 13px 5px rgba(140, 141, 140, 1);
 }
 @keyframes floating {
   from {
-    right: 0%;
+    right: 6%;
   }
   to {
-    right: -5%;
+    right: 0%;
   }
 }
-.dropdown p {
-  margin: 0.1em;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.2rem;
-  position: relative;
-  top: 1.5px;
-}
+
 .settings {
   display: none;
 }
@@ -165,7 +173,7 @@ h1 {
 .slogan {
   display: flex;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   font-weight: bolder;
   justify-content: center;
   align-items: center;
@@ -309,7 +317,7 @@ li {
   width: auto;
   top: 5%;
   margin: 0;
-  left: 4%;
+  left: 3%;
   box-shadow: none !important;
   animation: 0.2s zoomin;
 }
@@ -428,7 +436,7 @@ li {
   width: 100%;
   height: 100%;
   background-color: rgb(27, 27, 27);
-  z-index: 5;
+  z-index: 2;
   margin: 0;
   border-radius: 0;
   overflow: hidden;
@@ -452,6 +460,29 @@ li {
     height: auto;
   }
 }
+@media (max-width: 1400px) {
+  .zoom {
+    position: relative;
+    height: 600px;
+    width: auto;
+    top: 20%;
+    left: 3%;
+  }
+  .default {
+    position: relative;
+    height: 600px;
+    width: auto;
+    top: 20%;
+    left: 3%;
+  }
+  .close-btn {
+    position: sticky;
+    width: 53px;
+    margin-top: 11rem;
+    margin-left: 1rem;
+  }
+}
+
 @media (max-width: 1280px) {
   .main-container {
     width: 90%;
@@ -471,6 +502,9 @@ li {
   .main-container {
     height: 98vh;
   }
+  .zoom {
+    left: 5%;
+  }
 }
 @media (max-width: 1091px) {
   .main-container {
@@ -481,7 +515,7 @@ li {
     height: 500px;
     width: auto;
     top: 20%;
-    padding-left: 3%;
+    left: 4.5%;
   }
   .default {
     position: relative;
@@ -509,7 +543,6 @@ li {
     margin: 0;
     cursor: pointer;
     position: sticky;
-    width: 64px;
     height: auto;
     left: 50%;
     bottom: 76%;
@@ -538,22 +571,64 @@ li {
   .plans button {
     margin-top: 3rem;
   }
+  .zoom {
+    position: relative;
+    height: 400px;
+    width: auto;
+    top: 26%;
+  }
+  .default {
+    position: relative;
+    height: 400px;
+    width: auto;
+    top: 26%;
+  }
+  .close-btn {
+    position: sticky;
+    margin-top: 14rem;
+    right: 11rem;
+  }
 }
 @media (max-width: 880px) {
   .main-container {
-    height: 121vh;
+    height: 110%;
+  }
+  .fix-height {
+    height: 100%;
+    overflow: hidden;
   }
   .slides {
-    overflow: hidden;
     flex-wrap: wrap;
-    padding-top: 1rem;
-    height: 45vh;
+    height: 35%;
+  }
+  .slogan {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
   }
   .gallery {
-    overflow: hidden;
+    height: 35%;
     flex-wrap: wrap;
-    padding-top: 1rem;
-    height: 45vh;
+    overflow: hidden;
+    padding-top: 6rem;
+  }
+  .overlay {
+    height: 100%;
+  }
+  .zoom {
+    position: relative;
+    height: 400px;
+    width: auto;
+    top: 26%;
+    left: 5.5%;
+  }
+  .close-btn {
+    position: sticky;
+    right: -19rem;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    bottom: 70%;
   }
   .first img {
     position: relative;
@@ -575,7 +650,7 @@ li {
   }
   .plans {
     margin-top: 2rem;
-    height: fit-content;
+    height: 33%;
   }
   .plans .first {
     height: fit-content;
@@ -594,20 +669,20 @@ li {
     top: 3.5rem;
   }
 }
-@media (max-width: 779px) {
+@media (max-width: 790px) {
   .zoom {
     position: relative;
     height: 300px;
     width: auto;
-    top: 15rem;
-    left: 5%;
+    top: 30%;
+    left: 6%;
   }
   .default {
     position: relative;
     height: 300px;
     width: auto;
-    top: 15rem;
-    left: 5%;
+    top: 30%;
+    left: 6%;
   }
   .sidebar {
     width: 70%;
@@ -627,14 +702,12 @@ li {
     left: 85%;
   }
   .close-btn {
-    display: inline-block;
+    right: 0;
+    top: 0;
     margin: 0;
-    cursor: pointer;
-    position: sticky;
-    width: 64px;
-    height: auto;
-    left: 95%;
-    bottom: 76%;
+    padding: 0;
+    left: 0;
+    bottom: 80%;
   }
   .gallery-container,
   img {
@@ -657,10 +730,19 @@ li {
     bottom: 45%;
     right: 80%;
   }
+  .close-btn {
+    position: sticky;
+    left: 77%;
+    bottom: 0;
+    top: 19rem;
+  }
 }
 @media (max-width: 630px) {
   .main-container {
-    height: 165vh;
+    height: 122%;
+  }
+  .fix-height {
+    height: 100%;
   }
   .navbar {
     height: 5%;
@@ -670,19 +752,53 @@ li {
   }
   .settings {
     display: inline-block;
-    margin: 0;
     width: 32px;
     height: auto;
   }
+  .sidebar {
+    margin-bottom: 0.3rem;
+    margin-left: 0;
+  }
+  .dropdown p {
+    padding-top: 0.5rem;
+  }
+  .zoom {
+    position: relative;
+    height: 300px;
+    width: auto;
+    top: 23%;
+    left: 4%;
+  }
+  .default {
+    position: relative;
+    height: 300px;
+    width: auto;
+    top: 23%;
+    left: 4%;
+  }
+  .close-btn {
+    margin: 0;
+    padding: 0;
+    left: 0;
+    right: 50px;
+    top: 0;
+    bottom: 580px;
+  }
   .slogan {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
   .title {
     font-size: 1rem;
   }
   .slides {
-    height: 60vh;
+    height: 40%;
     overflow: hidden;
+    padding-top: 1rem;
+    margin-bottom: 3rem;
+  }
+  .gallery {
+    padding-top: 12rem;
+    margin-bottom: 6rem;
   }
   .slides .first {
     left: 12.5rem;
@@ -695,12 +811,22 @@ li {
     top: 8rem;
     right: 3rem;
   }
-  .premium {
-    margin-top: 3.5rem;
-  }
 }
-@media (max-width: 500px) {
+@media (max-width: 623px) {
   .main-container {
-    height: 167vh;
+    height: 168%;
+  }
+  .fix-height {
+    height: 100%;
+  }
+  .slogan {
+    font-size: 1.4rem;
+    margin-bottom: 7rem;
+  }
+  .plans {
+    padding-top: 0;
+  }
+  .plans .regular {
+    margin-bottom: 4.5rem;
   }
 }
