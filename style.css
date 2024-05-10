@@ -829,20 +829,19 @@ li {
   .plans .regular {
     margin-bottom: 4.5rem;
   }
-  @media (max-width: 621px) {
-    .main-container {
+@media (max-width: 621px) {
+  .main-container {
     height: 194vh;
   }
-      .fix-height {
+  .fix-height {
     height: 100vh;
-  }
   }
 }
 @media (max-width: 508px) {
   .main-container {
     height: 202vh;
   }
-    .fix-height {
+  .fix-height {
     height: 100vh;
   }
 }
