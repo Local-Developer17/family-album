@@ -833,11 +833,16 @@ li {
     .main-container {
     height: 194vh;
   }
+      .fix-height {
+    height: 100vh;
+  }
   }
 }
 @media (max-width: 508px) {
   .main-container {
     height: 202vh;
   }
+    .fix-height {
+    height: 100vh;
+  }
 }
-  
