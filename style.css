@@ -591,7 +591,7 @@ li {
 }
 @media (max-width: 880px) {
   .main-container {
-    height: 110%;
+    height: 120vh;
   }
   .fix-height {
     height: 100%;
@@ -739,7 +739,7 @@ li {
 }
 @media (max-width: 630px) {
   .main-container {
-    height: 122%;
+    height: 137vh;
   }
   .fix-height {
     height: 100%;
@@ -811,11 +811,11 @@ li {
     top: 8rem;
     right: 3rem;
   }
+  .plan {
+  align-self: baseline;
+}
 }
 @media (max-width: 623px) {
-  .main-container {
-    height: 168%;
-  }
   .fix-height {
     height: 100%;
   }
@@ -829,4 +829,15 @@ li {
   .plans .regular {
     margin-bottom: 4.5rem;
   }
+  @media (max-width: 621px) {
+    .main-container {
+    height: 194vh;
+  }
+  }
 }
+@media (max-width: 508px) {
+  .main-container {
+    height: 202vh;
+  }
+}
+  
