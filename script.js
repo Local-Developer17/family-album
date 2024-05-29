@@ -12,28 +12,19 @@ const slidesEl = document.querySelector(".slides");
 const sloganEl = document.querySelector(".slogan");
 const titleEl = document.querySelector(".title");
 const plansEl = document.querySelector(".plans");
+const allImages = [
+  ["images/q1/pic-1.jpg", "images/q1/pic-2.jpg", "images/q1/pic-3.jpg"],
+  ["images/q2/pic-1.jpg", "images/q2/pic-2.jpg", "images/q2/pic-3.jpg"],
+  ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"],
+  ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q4/pic-3.jpg"],
+];
 const q1Images = ["images/q1/pic-1.jpg", "images/q1/pic-2.jpg", "images/q1/pic-3.jpg"];
 const q2Images = ["images/q2/pic-1.jpg", "images/q2/pic-2.jpg", "images/q2/pic-3.jpg"];
 const q3Images = ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"];
 const q4Images = ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q3/pic-3.jpg"];
-const slideImages = [
-  "images/slide-img/pic-10.jpg",
-  "images/slide-img/pic-11.jpg",
-  "images/slide-img/pic-12.jpg",
-  "images/slide-img/pic-19.jpg",
-];
-const slideImages2 = [
-  "images/slide-img/pic-13.jpg",
-  "images/slide-img/pic-14.jpg",
-  "images/slide-img/pic-15.jpg",
-  "images/slide-img/pic-20.jpg",
-];
-const slideImages3 = [
-  "images/slide-img/pic-16.jpg",
-  "images/slide-img/pic-17.jpg",
-  "images/slide-img/pic-18.jpg",
-  "images/slide-img/pic-21.jpg",
-];
+const slideImages = [...q1Images];
+const slideImages2 = [...q2Images];
+const slideImages3 = [...q3Images, ...q4Images];
 const RightToggleUrl = "images/toggle-right.png";
 const leftToggleUrl = "images/toggle-left.png";
 const closeBtnUrl = "images/cancel.png";
@@ -63,19 +54,19 @@ buyBtn[2].onclick = () => {
 };
 //Listelenen fotoğrafları seçilen çeyreğe göre listeleme:
 document.querySelector(".q1").onclick = () => {
-  switchQuarter(1);
+  switchQuarter(0);
   refreshGallery(2);
 };
 document.querySelector(".q2").onclick = () => {
-  switchQuarter(2);
+  switchQuarter(1);
   refreshGallery(2);
 };
 document.querySelector(".q3").onclick = () => {
-  switchQuarter(3);
+  switchQuarter(2);
   refreshGallery(2);
 };
 document.querySelector(".q4").onclick = () => {
-  switchQuarter(4);
+  switchQuarter(3);
   refreshGallery(2);
 };
 //Galeride Resimleri Tıklanan çeyreğe göre dizme:
@@ -83,70 +74,19 @@ function switchQuarter(input) {
   headingEl.classList.remove("hidden");
   container.classList.remove("hidden");
   slidesEl.classList.add("hidden");
-  switch (input) {
-    case 1:
-      galleryElem.innerHTML = "";
-      for (let i = 1; i <= q1Images.length; i++) {
-        let newImg = document.createElement("img");
-        newImg.setAttribute("src", q1Images[i - 1]);
-        galleryElem.appendChild(newImg);
-        //Resmi büyüt:
-        image[i + 4].onclick = () => {
-          pic.src = q1Images[i - 1];
-          openImage();
-          toggleBtn(i - 1, q1Images.length - 1, 1);
-          closeBtn();
-          picIndicator(i, q1Images.length);
-        };
-      }
-      break;
-    case 2:
-      galleryElem.innerHTML = "";
-      for (let i = 1; i <= q2Images.length; i++) {
-        let newImg = document.createElement("img");
-        newImg.setAttribute("src", q2Images[i - 1]);
-        galleryElem.appendChild(newImg);
-        //Resmi büyüt:
-        image[i + 4].onclick = () => {
-          pic.src = q2Images[i - 1];
-          openImage();
-          toggleBtn(i - 1, q2Images.length - 1, 2);
-          closeBtn();
-          picIndicator(i, q2Images.length);
-        };
-      }
-      break;
-    case 3:
-      galleryElem.innerHTML = "";
-      for (let i = 1; i <= q3Images.length; i++) {
-        let newImg = document.createElement("img");
-        newImg.setAttribute("src", q3Images[i - 1]);
-        galleryElem.appendChild(newImg);
-        //Resmi büyüt:
-        image[i + 4].onclick = () => {
-          pic.src = q3Images[i - 1];
-          openImage();
-          toggleBtn(i - 1, q3Images.length - 1, 3);
-          closeBtn();
-          picIndicator(i, q3Images.length);
-        };
-      }
-      break;
-    case 4:
-      galleryElem.innerHTML = "";
-      for (let i = 1; i <= q4Images.length; i++) {
-        let newImg = document.createElement("img");
-        newImg.setAttribute("src", q4Images[i - 1]);
-        galleryElem.appendChild(newImg);
-        //Resmi büyüt:
-        image[i + 4].onclick = () => {
-          pic.src = q4Images[i - 1];
-          openImage();
-          toggleBtn(i - 1, q4Images.length - 1, 4);
-          closeBtn();
-          picIndicator(i, q4Images.length);
-        };
-      }
+  galleryElem.innerHTML = "";
+  for (let [index, value] of allImages[input].entries()) {
+    let newImg = document.createElement("img");
+    newImg.setAttribute("src", value);
+    galleryElem.appendChild(newImg);
+    //Resmi büyüt:
+    image[index + 5].onclick = () => {
+      pic.src = value;
+      openImage();
+      toggleBtn(index, allImages[input].length - 1, input);
+      closeBtn();
+      picIndicator(index + 1, allImages[input].length);
+    };
   }
 }
 //Büyütülen Resimler Arası Geçiş tuşları:
@@ -158,59 +98,16 @@ function toggleBtn(counter, pictureCount, input) {
   RightToggle.classList.add("right-btn");
   container.appendChild(RightToggle);
   RightToggle.onclick = () => {
-    switch (input) {
-      case 1:
-        if (counter >= pictureCount) {
-          counter = 0;
-          pic.src = q1Images[counter];
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q1Images[counter + 1];
-          counter++;
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
-        break;
-
-      case 2:
-        if (counter >= pictureCount) {
-          counter = 0;
-          pic.src = q2Images[counter];
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q2Images[counter + 1];
-          counter++;
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
-        break;
-      case 3:
-        if (counter >= pictureCount) {
-          counter = 0;
-          pic.src = q3Images[counter];
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q3Images[counter + 1];
-          counter++;
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
-        break;
-      case 4:
-        if (counter >= pictureCount) {
-          counter = 0;
-          pic.src = q4Images[counter];
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q4Images[counter + 1];
-          counter++;
-          swipeRight();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
+    if (counter >= pictureCount) {
+      counter = 0;
+      pic.src = allImages[input][counter];
+      swipeRight();
+      indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
+    } else {
+      pic.src = allImages[input][counter + 1];
+      counter++;
+      swipeRight();
+      indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
     }
   };
   //Left Toggle:
@@ -218,58 +115,16 @@ function toggleBtn(counter, pictureCount, input) {
   leftToggle.classList.add("left-btn");
   container.appendChild(leftToggle);
   leftToggle.onclick = () => {
-    switch (input) {
-      case 1:
-        if (counter < 1) {
-          counter = pictureCount;
-          pic.src = q1Images[pictureCount];
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q1Images[counter - 1];
-          counter--;
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
-        break;
-      case 2:
-        if (counter < 1) {
-          counter = pictureCount;
-          pic.src = q2Images[pictureCount];
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q2Images[counter - 1];
-          counter--;
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
-        break;
-      case 3:
-        if (counter < 1) {
-          counter = pictureCount;
-          pic.src = q3Images[pictureCount];
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q3Images[counter - 1];
-          counter--;
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
-        break;
-      case 4:
-        if (counter < 1) {
-          counter = pictureCount;
-          pic.src = q4Images[pictureCount];
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        } else {
-          pic.src = q4Images[counter - 1];
-          counter--;
-          swipeLeft();
-          indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
-        }
+    if (counter < 1) {
+      counter = pictureCount;
+      pic.src = allImages[input][counter];
+      swipeLeft();
+      indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
+    } else {
+      pic.src = allImages[input][counter - 1];
+      counter--;
+      swipeLeft();
+      indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
     }
   };
 }
@@ -363,9 +218,9 @@ function slideAnimation() {
   thirdSlide.src = slideImages3[counter3];
   slideImages.forEach(() => {
     setInterval(() => {
-      let counter = Math.floor(Math.random() * 4);
-      let counter2 = Math.floor(Math.random() * 4);
-      let counter3 = Math.floor(Math.random() * 4);
+      let counter = Math.floor(Math.random() * slideImages.length);
+      let counter2 = Math.floor(Math.random() * slideImages2.length);
+      let counter3 = Math.floor(Math.random() * slideImages3.length);
       firstSlide.src = slideImages[counter];
       secondSlide.src = slideImages2[counter2];
       thirdSlide.src = slideImages3[counter3];
