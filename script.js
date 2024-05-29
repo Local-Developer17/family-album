@@ -18,13 +18,9 @@ const allImages = [
   ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"],
   ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q4/pic-3.jpg"],
 ];
-const q1Images = ["images/q1/pic-1.jpg", "images/q1/pic-2.jpg", "images/q1/pic-3.jpg"];
-const q2Images = ["images/q2/pic-1.jpg", "images/q2/pic-2.jpg", "images/q2/pic-3.jpg"];
-const q3Images = ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"];
-const q4Images = ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q3/pic-3.jpg"];
-const slideImages = [...q1Images];
-const slideImages2 = [...q2Images];
-const slideImages3 = [...q3Images, ...q4Images];
+const slideImages = [...allImages[0]];
+const slideImages2 = [...allImages[1]];
+const slideImages3 = [...allImages[2], ...allImages[3]];
 const RightToggleUrl = "images/toggle-right.png";
 const leftToggleUrl = "images/toggle-left.png";
 const closeBtnUrl = "images/cancel.png";
