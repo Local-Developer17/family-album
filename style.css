@@ -36,7 +36,6 @@ h1 {
   box-shadow: 0px 1px 12px 5px rgba(242, 242, 242, 1);
 }
 .sidebar {
-  width: 40%;
   height: auto;
   text-align: center;
   border-radius: 10px;
@@ -50,14 +49,20 @@ h1 {
   cursor: pointer;
   position: relative;
   margin-left: 1rem;
+  margin-right: 1rem;
   font-size: 2rem;
 }
 .dropdown {
   display: flex;
-  position: relative;
+  position: absolute;
   align-items: center;
-  margin-left: 1rem;
-  animation: 1s floating;
+  top: 3.5rem;
+  right: 74.5%;
+  border-radius: 10px;
+  box-shadow: 0px 1px 12px 5px rgba(242, 242, 242, 1);
+  background-color: #f1f2d3;
+  flex-direction: row;
+  animation: 0.3s floating;
 }
 .dropdown p {
   margin: 0.3em;
@@ -73,10 +78,10 @@ h1 {
 }
 @keyframes floating {
   from {
-    right: 6%;
+    top: 0%;
   }
   to {
-    right: 0%;
+    top: 6%;
   }
 }
 
@@ -104,10 +109,11 @@ h1 {
   padding-top: 4rem;
   border-radius: 15px;
 }
-.gallery img {
+.gallery-container img {
   box-shadow: 0px 1px 12px 5px rgba(242, 242, 242, 1);
+  border-radius: 10px;
 }
-.gallery img:hover {
+.gallery-container img:hover {
   box-shadow: 0px 1px 15px 9px #8c8d8c;
 }
 .slides {
@@ -169,6 +175,11 @@ h1 {
   justify-content: center;
   width: auto;
   flex-wrap: wrap;
+  margin: 10px;
+  margin-top: 20px;
+  height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 .slogan {
   display: flex;
@@ -290,6 +301,9 @@ button {
 .selected {
   box-shadow: 0 0 5px #8c8d8c, 0 0 15px #8c8d8c, 0 0 20px #8c8d8c, 0 0 25px #8c8d8c, 0 0 30px #8c8d8c;
 }
+.current {
+  box-shadow: 0px 0px 5px 4px #8c8d8c;
+}
 .second p {
   margin: 0;
 }
@@ -297,7 +311,7 @@ img {
   margin: 10px;
   margin-top: 20px;
   height: 100px;
-  border-radius: 10px;
+
   cursor: pointer;
 }
 .no-click {
@@ -316,9 +330,10 @@ li {
   position: relative;
   width: auto;
   top: 5%;
-  margin: 0;
   left: 3%;
+  margin: 0;
   box-shadow: none !important;
+  border-radius: 10px;
   animation: 0.2s zoomin;
 }
 .default {
@@ -326,9 +341,28 @@ li {
   position: relative;
   width: auto;
   top: 5%;
+  left: 3%;
   margin: 0;
-  left: 4%;
   box-shadow: none !important;
+  border-radius: 10px;
+  box-shadow: none !important;
+}
+.preview {
+  position: absolute;
+  height: 15%;
+  top: 88%;
+  left: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.previewImg {
+  height: 30%;
+  margin: 4px;
+  border-radius: 2px;
+}
+#pic {
+  margin: 0;
 }
 @keyframes zoomin {
   from {
@@ -338,9 +372,10 @@ li {
     transform: translateY(0vh);
   }
 }
-.zoomout {
+/* .zoomout {
   animation: 0.2s zoomout;
-}
+  right: 3%;
+} */
 @keyframes zoomout {
   from {
     transform: translateY(0vh);
@@ -375,6 +410,7 @@ li {
   width: auto;
   height: 100%;
   margin: 0;
+  border-radius: 10px;
   box-shadow: 0px 1px 12px 5px rgba(242, 242, 242, 1);
 }
 .left-btn {
@@ -454,6 +490,11 @@ li {
     height: 17rem;
   }
 }
+@media (max-width: 1680px) {
+  .dropdown {
+    right: 72.5%;
+  }
+}
 @media (max-width: 1538px) {
   .slides img {
     width: 20rem;
@@ -465,14 +506,14 @@ li {
     position: relative;
     height: 600px;
     width: auto;
-    top: 20%;
+    top: 15%;
     left: 3%;
   }
   .default {
     position: relative;
     height: 600px;
     width: auto;
-    top: 20%;
+    top: 15%;
     left: 3%;
   }
   .close-btn {
@@ -516,6 +557,7 @@ li {
     width: auto;
     top: 20%;
     left: 4.5%;
+    border-radius: 10px !important;
   }
   .default {
     position: relative;
@@ -591,7 +633,7 @@ li {
 }
 @media (max-width: 880px) {
   .main-container {
-    height: 120vh;
+    height: 110%;
   }
   .fix-height {
     height: 100%;
@@ -739,7 +781,7 @@ li {
 }
 @media (max-width: 630px) {
   .main-container {
-    height: 137vh;
+    height: 122%;
   }
   .fix-height {
     height: 100%;
@@ -811,11 +853,11 @@ li {
     top: 8rem;
     right: 3rem;
   }
-  .plan {
-  align-self: baseline;
-}
 }
 @media (max-width: 623px) {
+  .main-container {
+    height: 168%;
+  }
   .fix-height {
     height: 100%;
   }
@@ -829,6 +871,7 @@ li {
   .plans .regular {
     margin-bottom: 4.5rem;
   }
+}
 @media (max-width: 621px) {
   .main-container {
     height: 194vh;
