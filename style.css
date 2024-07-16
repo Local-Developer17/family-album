@@ -14,7 +14,7 @@ h1 {
   text-align: center;
 }
 .main-container {
-  height: 98vh;
+  height: 99vh;
   width: 80%;
   background-color: #bedbca;
   box-sizing: border-box;
@@ -196,6 +196,10 @@ h1 {
   color: #8c8d8c;
   font-weight: 900;
   font-family: "Dancing Script", cursive;
+  flex-direction: column;
+}
+.slogan p {
+  margin: 0;
 }
 .plans {
   display: flex;
@@ -480,7 +484,15 @@ li {
 .hidden {
   display: none;
 }
-
+.time {
+  font-size: 1.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.sticky {
+  position: fixed;
+  z-index: 1;
+}
 /*Media Queries*/
 @media (max-width: 1820px) {
   .main-container {
@@ -633,7 +645,7 @@ li {
 }
 @media (max-width: 880px) {
   .main-container {
-    height: 110%;
+    height: 130%;
   }
   .fix-height {
     height: 100%;
@@ -781,7 +793,7 @@ li {
 }
 @media (max-width: 630px) {
   .main-container {
-    height: 122%;
+    height: 140%;
   }
   .fix-height {
     height: 100%;
@@ -878,6 +890,9 @@ li {
   }
   .fix-height {
     height: 100vh;
+  }
+  .slogan p {
+    display: block;
   }
 }
 @media (max-width: 508px) {
