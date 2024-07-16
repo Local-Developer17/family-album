@@ -12,19 +12,21 @@
 <body>
   <div class="main-container">
     <nav class="navbar">
-      <p class="heading" onclick="reload()">Home</p>
+      <p onclick="window.location.reload()" class="heading">Home</p>
       <div class="sidebar">
         <img src="images/settings.png" class="settings" alt="" />
         <p class="heading">Pictures</p>
         <div class="dropdown hidden">
-          <p class="q1">Jan</p>
-          <p class="q2">Feb</p>
-          <p class="q3">March</p>
-          <p class="q4">Apr</p>
+          <p class="q1" data-input="0">Jan</p>
+          <p class="q2" data-input="1">Feb</p>
+          <p class="q3" data-input="2">March</p>
+          <p class="q4" data-input="3">Apr</p>
         </div>
       </div>
+      <p class="time"></p>
     </nav>
     <h1 class="welcome">Welcome to Family Album</h1>
+    <p id="scrolling" class="hidden">Learn more about Plans</p>
     <div class="slides">
       <div class="slide first">
         <img src="" id="first" alt="" />
@@ -36,6 +38,7 @@
         <img src="" id="third" alt="" />
       </div>
     </div>
+
     <div class="gallery hidden">
       <p class="gallery-heading hidden">Select a Picture</p>
       <img id="pic" src="" alt="" />
