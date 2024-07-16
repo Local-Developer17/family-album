@@ -17,25 +17,48 @@ const RightToggleUrl = "images/toggle-right.png";
 const leftToggleUrl = "images/toggle-left.png";
 const closeBtnUrl = "images/cancel.png";
 const welcomeEl = document.querySelector(".welcome");
-const buyBtn = document.getElementsByTagName("button");
 const firstSlide = document.getElementById("first");
 const secondSlide = document.getElementById("second");
 const thirdSlide = document.getElementById("third");
 const overlay = document.querySelector(".overlay");
 const preview = document.querySelector(".preview");
+const navBar = document.querySelector(".navbar");
 const allImages = [
   ["images/q1/pic-1.jpg", "images/q1/pic-2.jpg", "images/q1/pic-3.jpg"],
   ["images/q2/pic-1.jpg", "images/q2/pic-2.jpg", "images/q2/pic-3.jpg"],
   ["images/q3/pic-1.jpg", "images/q3/pic-2.jpg", "images/q3/pic-3.jpg"],
   ["images/q4/pic-1.jpg", "images/q4/pic-2.jpg", "images/q4/pic-3.jpg"],
 ];
-const slideImages = [...allImages[0], ...allImages[1], ...allImages[2], ...allImages[3]];
-const slideImages2 = [...allImages[0], ...allImages[1], ...allImages[2], ...allImages[3]];
-const slideImages3 = [...allImages[0], ...allImages[1], ...allImages[2], ...allImages[3]];
+let slideImages;
+let slideImages2;
+let slideImages3;
 const previewAll = document.querySelectorAll(".previewImg");
 let isZoomed = "";
 let pictureCount = 0;
 let counter = 0;
+
+//Sticky Navbar:
+/* new IntersectionObserver(
+  function (entries) {
+    const [entry] = entries;
+    entry.isIntersecting == false ? navBar.classList.add("sticky") : navBar.classList.remove("sticky");
+  },
+  {
+    root: null,
+    threshold: 0,
+  }
+).observe(navBar); */
+
+//Saat:
+function timer() {
+  document.querySelector(".time").innerHTML = Intl.DateTimeFormat("tr-TR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(new Date());
+}
+timer();
+setInterval(timer, 1000);
 
 //Dropdown Sürükleme Olayları:
 sidebarElem.addEventListener("mouseover", () => {
@@ -45,31 +68,21 @@ sidebarElem.addEventListener("mouseleave", () => {
   dropdownElem.classList.add("hidden");
 });
 //Plan Satın Alma(Price Cards):
-buyBtn[1].onclick = () => {
-  document.querySelector(".premium").classList.add("selected");
-  document.querySelector(".ultimate").classList.remove("selected");
-};
-buyBtn[2].onclick = () => {
-  document.querySelector(".ultimate").classList.add("selected");
-  document.querySelector(".premium").classList.remove("selected");
-};
+document.querySelectorAll(".buy").forEach(
+  (button, index) =>
+    (button.onclick = () => {
+      document.querySelectorAll(".plan").forEach((plan) => plan.classList.remove("selected"));
+      document.querySelectorAll(".plan")[index + 1].classList.add("selected");
+    })
+);
+
 //Listelenen fotoğrafları seçilen çeyreğe göre listeleme:
-document.querySelector(".q1").onclick = () => {
-  switchQuarter(0);
+
+dropdownElem.onclick = (e) => {
+  e.target != dropdownElem.children && switchQuarter(e.target.dataset.input);
   refreshGallery(2);
 };
-document.querySelector(".q2").onclick = () => {
-  switchQuarter(1);
-  refreshGallery(2);
-};
-document.querySelector(".q3").onclick = () => {
-  switchQuarter(2);
-  refreshGallery(2);
-};
-document.querySelector(".q4").onclick = () => {
-  switchQuarter(3);
-  refreshGallery(2);
-};
+
 let previewImg;
 //Galeride Resimleri Tıklanan çeyreğe göre dizme:
 function switchQuarter(input) {
@@ -83,7 +96,7 @@ function switchQuarter(input) {
     galleryElem.appendChild(newImg);
     //Resmi büyüt:
     image[index + 5].onclick = () => {
-      allImages[input].forEach((value, i) => {
+      allImages[input].forEach((value) => {
         //Preview Componentindeki İmajların gelmesi:
         previewImg = document.createElement("img");
         previewImg.setAttribute("src", value);
@@ -116,11 +129,7 @@ function switchQuarter(input) {
 const RightToggle = document.createElement("img");
 const leftToggle = document.createElement("img");
 function toggleBtn(counter, pictureCount, input) {
-  //Right Toggle:
-  RightToggle.setAttribute("src", RightToggleUrl);
-  RightToggle.classList.add("right-btn");
-  container.appendChild(RightToggle);
-  RightToggle.onclick = () => {
+  function toggleRight() {
     if (counter >= pictureCount) {
       document.querySelectorAll(".previewImg")[counter].classList.remove("current");
       counter = 0;
@@ -136,12 +145,8 @@ function toggleBtn(counter, pictureCount, input) {
       swipeRight();
       indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
     }
-  };
-  //Left Toggle:
-  leftToggle.setAttribute("src", leftToggleUrl);
-  leftToggle.classList.add("left-btn");
-  container.appendChild(leftToggle);
-  leftToggle.onclick = () => {
+  }
+  function toggleLeft() {
     if (counter < 1) {
       document.querySelectorAll(".previewImg")[counter].classList.remove("current");
       counter = pictureCount;
@@ -157,7 +162,20 @@ function toggleBtn(counter, pictureCount, input) {
       swipeLeft();
       indicator.textContent = `${counter + 1} / ${pictureCount + 1}`;
     }
-  };
+  }
+  //Right Toggle İkonu:
+  RightToggle.setAttribute("src", RightToggleUrl);
+  RightToggle.classList.add("right-btn");
+  container.appendChild(RightToggle);
+  RightToggle.onclick = () => toggleRight();
+  //Left Toggle İkonu:
+  leftToggle.setAttribute("src", leftToggleUrl);
+  leftToggle.classList.add("left-btn");
+  container.appendChild(leftToggle);
+  leftToggle.onclick = () => toggleLeft();
+
+  //Yön Tuşları ile fotoğraf değiştirme:
+  document.onkeydown = (e) => (e.key == "ArrowRight" && toggleRight()) || (e.key == "ArrowLeft" && toggleLeft());
 }
 const indicator = document.createElement("p");
 function picIndicator(counter, pictureCount) {
@@ -221,6 +239,7 @@ document.addEventListener("keydown", (e) => {
     refreshGallery(1);
   }
 });
+
 //Animasyonlar:
 function swipeRight() {
   pic.classList.add("swipe-right");
@@ -240,13 +259,15 @@ function swipeLeft() {
 }
 //Ana Menüdeki Slayt Resimleri:
 function slideAnimation() {
-  firstSlide.src = slideImages[Math.floor(Math.random() * slideImages.length)];
+  slideImages = slideImages2 = slideImages3 = allImages.flat();
+  firstSlide.src = "https://picsum.photos/id/237/500/350";
   secondSlide.src = slideImages2[Math.floor(Math.random() * slideImages2.length)];
   thirdSlide.src = slideImages3[Math.floor(Math.random() * slideImages3.length)];
   setInterval(() => {
-    firstSlide.src = slideImages[Math.floor(Math.random() * slideImages.length)];
+    firstSlide.src = `https://picsum.photos/id/${Math.ceil(Math.random() * 300)}/500/350`;
     secondSlide.src = slideImages2[Math.floor(Math.random() * slideImages2.length)];
     thirdSlide.src = slideImages3[Math.floor(Math.random() * slideImages3.length)];
   }, 4000);
 }
 slideAnimation();
+document.querySelector("#scrolling").onclick = () => plansEl.scrollIntoView({ behavior: "smooth" });
